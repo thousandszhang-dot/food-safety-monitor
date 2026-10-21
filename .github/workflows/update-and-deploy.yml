@@ -1,0 +1,69 @@
+name: Refresh FoodWatch and deploy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'
+      timezone: Asia/Shanghai
+    - cron: '0 13 * * *'
+      timezone: Asia/Shanghai
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: foodwatch-pages
+  cancel-in-progress: false
+
+jobs:
+  refresh-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out site and current RASFF snapshot
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Refresh official RASFF data and page snapshot
+        env:
+          SANTE_SUBSCRIPTION_KEY: ${{ secrets.SANTE_SUBSCRIPTION_KEY }}
+        run: |
+          if [ -f data/rasff_notifications.json.gz ]; then
+            gunzip -kf data/rasff_notifications.json.gz
+          fi
+          python3 rasff_collector.py
+          python3 embed_rasff_snapshot.py
+          cp index.html public/index.html
+          gzip -f data/rasff_notifications.json
+
+      - name: Save refreshed source snapshot
+        run: |
+          if ! git diff --quiet -- data/rasff_notifications.json.gz index.html public/index.html; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A data/rasff_notifications.json data/rasff_notifications.json.gz index.html public/index.html
+            git commit -m "Refresh FoodWatch RASFF snapshot"
+            git push origin HEAD:main
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+
+      - name: Deploy public website
+        id: deployment
+        uses: actions/deploy-pages@v4
