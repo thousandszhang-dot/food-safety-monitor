@@ -44,8 +44,12 @@ jobs:
           if [ -f data/rasff_notifications.json.gz ]; then
             gunzip -kf data/rasff_notifications.json.gz
           fi
-          python3 rasff_collector.py
-          python3 embed_rasff_snapshot.py
+          if [ -n "$SANTE_SUBSCRIPTION_KEY" ]; then
+            python3 rasff_collector.py
+            python3 embed_rasff_snapshot.py
+          else
+            echo "::warning::SANTE_SUBSCRIPTION_KEY is not configured; deploying the saved snapshot without refreshing RASFF data."
+          fi
           mkdir -p public
           cp index.html public/index.html
           gzip -fn data/rasff_notifications.json
