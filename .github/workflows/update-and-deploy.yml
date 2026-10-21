@@ -43,6 +43,7 @@ jobs:
           fi
           python3 rasff_collector.py
           python3 embed_rasff_snapshot.py
+          mkdir -p public
           cp index.html public/index.html
           gzip -f data/rasff_notifications.json
 
