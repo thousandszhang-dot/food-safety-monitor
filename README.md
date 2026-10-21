@@ -12,7 +12,7 @@
 
 工作流按 `Asia/Shanghai` 时区在 08:00 和 13:00 触发。RASFF 接口暂时不可用时，该次工作流失败，已有线上页面不会被空数据覆盖；下一个时段会再尝试。
 
-工作流把更新后的压缩 RASFF 数据 JSON 和页面快照提交回 `main` 分支，因此下一次定时运行可从上一次的采集位置增量更新。仓库需允许 GitHub Actions 使用 `GITHUB_TOKEN` 写入内容，并且 Pages 需选用 GitHub Actions 部署。
+工作流把更新后的压缩 RASFF JSON 与压缩 HTML 源文件提交回 `main` 分支；运行时自动解压、增量更新，再将网页发布到 `public/`。仓库需允许 GitHub Actions 使用 `GITHUB_TOKEN` 写入内容，并且 Pages 需选用 GitHub Actions 部署。
 
 首次发布后，GitHub Pages 会提供一个 `https://<账户>.github.io/<仓库>/` 网址，可在 Windows 或其他设备的浏览器访问。当前目录尚未绑定 GitHub 仓库或公开网址。
 
