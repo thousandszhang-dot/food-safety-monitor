@@ -50,6 +50,7 @@ jobs:
 
       - name: Refresh MFDS public list and embed snapshot
         run: |
+          mkdir -p public
           if [ -f index.html.gz ]; then
             gunzip -kf index.html.gz
           fi
