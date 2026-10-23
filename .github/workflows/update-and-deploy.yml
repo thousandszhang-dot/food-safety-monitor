@@ -2,6 +2,12 @@ name: Refresh FoodWatch and deploy
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'mfds_collector.rb'
+      - 'refresh_mfds_snapshot.py'
+      - '.github/workflows/update-and-deploy.yml'
   schedule:
     - cron: '0 8 * * *'
       timezone: Asia/Shanghai
@@ -34,13 +40,26 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Refresh official RASFF data and page snapshot
-        env:
-          SANTE_SUBSCRIPTION_KEY: ${{ secrets.SANTE_SUBSCRIPTION_KEY }}
+      - name: Set up Ruby for public MFDS list collector
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Install MFDS HTML parser
+        run: gem install nokogiri --no-document
+
+      - name: Refresh MFDS public list and embed snapshot
         run: |
           if [ -f index.html.gz ]; then
             gunzip -kf index.html.gz
           fi
+          ruby mfds_collector.rb
+          python3 refresh_mfds_snapshot.py
+
+      - name: Refresh official RASFF data and page snapshot
+        env:
+          SANTE_SUBSCRIPTION_KEY: ${{ secrets.SANTE_SUBSCRIPTION_KEY }}
+        run: |
           if [ -f data/rasff_notifications.json.gz ]; then
             gunzip -kf data/rasff_notifications.json.gz
           fi
@@ -48,7 +67,7 @@ jobs:
             python3 rasff_collector.py
             python3 embed_rasff_snapshot.py
           else
-            echo "::warning::SANTE_SUBSCRIPTION_KEY is not configured; deploying the saved snapshot without refreshing RASFF data."
+            echo "::warning::SANTE_SUBSCRIPTION_KEY is not configured; RASFF remains at its saved snapshot date. MFDS was refreshed from its public list page."
           fi
           mkdir -p public
           cp index.html public/index.html
@@ -57,10 +76,10 @@ jobs:
 
       - name: Save refreshed source snapshot
         run: |
-          if ! git diff --quiet -- data/rasff_notifications.json.gz index.html.gz; then
+          if ! git diff --quiet -- data/rasff_notifications.json.gz data/mfds_import_noncompliant.json index.html.gz; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/rasff_notifications.json.gz index.html.gz
+            git add data/rasff_notifications.json.gz data/mfds_import_noncompliant.json index.html.gz
             git commit -m "Refresh FoodWatch RASFF snapshot"
             git push origin HEAD:main
           fi
