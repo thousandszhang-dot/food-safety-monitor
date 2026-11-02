@@ -1,10 +1,31 @@
 {
   "source": "MFDS Imported Food Non-compliance",
   "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-  "collectedAt": "2026-11-02T00:26:13Z",
-  "publishedTotalAtCollection": 556,
-  "recordsCollected": 556,
+  "collectedAt": "2026-11-02T05:53:50Z",
+  "publishedTotalAtCollection": 557,
+  "recordsCollected": 557,
   "records": [
+    {
+      "id": "202600756153",
+      "sourceCountry": "KR",
+      "sourceCountryName": "韩国",
+      "noticeDate": "2026-11-02",
+      "importingCountry": "韩国",
+      "originCountry": "중국",
+      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
+      "productName": "냉동홍고추",
+      "productNameEnglish": "FROZEN RED CHILLI",
+      "productCategory": "농.임산물",
+      "productType": "고추(열매,냉동)",
+      "nonComplianceText": "클로르메쾃 기준초과[기준: 0.01 이하, 결과: 0.05]",
+      "detectedValueText": "0.05]",
+      "complianceStandardText": "0.01 이하",
+      "handlingAgency": "경인청(미추홀)",
+      "manufactureExpiryText": "",
+      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
+      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600756153",
+      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
+    },
     {
       "id": "202600738294",
       "sourceCountry": "KR",
@@ -399,7 +420,7 @@
       "detectedValueText": null,
       "complianceStandardText": null,
       "handlingAgency": "서울청",
-      "manufactureExpiryText": "2026-02-24 ~ 2028-02-23",
+      "manufactureExpiryText": "2026-02-23 ~ 2028-02-23",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600733247",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
