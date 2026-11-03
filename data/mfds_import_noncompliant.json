@@ -1,9 +1,9 @@
 {
   "source": "MFDS Imported Food Non-compliance",
   "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-  "collectedAt": "2026-11-02T05:53:50Z",
-  "publishedTotalAtCollection": 557,
-  "recordsCollected": 557,
+  "collectedAt": "2026-11-03T00:27:57Z",
+  "publishedTotalAtCollection": 558,
+  "recordsCollected": 558,
   "records": [
     {
       "id": "202600756153",
@@ -24,6 +24,27 @@
       "manufactureExpiryText": "",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600756153",
+      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
+    },
+    {
+      "id": "202600738963",
+      "sourceCountry": "KR",
+      "sourceCountryName": "韩国",
+      "noticeDate": "2026-11-02",
+      "importingCountry": "韩国",
+      "originCountry": "중국",
+      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
+      "productName": "원탑 텀블러(핑크)",
+      "productNameEnglish": "GLASS TUMBLER",
+      "productCategory": "기구또는용기.포장",
+      "productType": "폴리프로필렌",
+      "nonComplianceText": "PP(분홍) 총용출량 94(4%초산), 4(물), 29(n-헵탄) / PP(노랑) 총용출량 89(4%초산), 4(물), 29(n-헵탄) / PP(흰색) 총용출량 88(4%초산), 5(물), 18(n-헵탄) / PP(갈색) 총용출량 86(4%초산), 5(물), 28(n-헵탄) 검출 [규격 : 30이하(다만, 사용온도가 100℃ 이하로 침출용액이 n-헵탄인 경우 150 이하)](단위:mg/L)",
+      "detectedValueText": null,
+      "complianceStandardText": null,
+      "handlingAgency": "경인청(미추홀)",
+      "manufactureExpiryText": "",
+      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
+      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600738963",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
     },
     {
