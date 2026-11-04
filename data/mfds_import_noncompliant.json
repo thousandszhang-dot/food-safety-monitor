@@ -1,7 +1,7 @@
 {
   "source": "MFDS Imported Food Non-compliance",
   "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-  "collectedAt": "2026-11-03T05:45:42Z",
+  "collectedAt": "2026-11-04T00:27:33Z",
   "publishedTotalAtCollection": 561,
   "recordsCollected": 561,
   "records": [
@@ -24,6 +24,27 @@
       "manufactureExpiryText": "",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600754112",
+      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
+    },
+    {
+      "id": "202600751906",
+      "sourceCountry": "KR",
+      "sourceCountryName": "韩国",
+      "noticeDate": "2026-11-03",
+      "importingCountry": "韩国",
+      "originCountry": "일본",
+      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
+      "productName": "혼합케즈리코",
+      "productNameEnglish": "MIXED KEZURIKO",
+      "productCategory": "가공식품",
+      "productType": "기타 수산물가공품",
+      "nonComplianceText": "금속성 이물: 식품 중 46.9 mg/kg 검출, 2 mm 이상 금속성이물 없음[기준: 식품 중 10.0 mg/kg 이상 검출되어서는 아니 되며, 2 mm 이상인 금속성 이물이 검출되어서는 아니됨]",
+      "detectedValueText": "46.9 mg/kg 검출",
+      "complianceStandardText": "식품 중 10.0 mg/kg 이상 검출되어서는 아니 되며, 2 mm 이상인 금속성 이물이 검출되어서는 아니됨",
+      "handlingAgency": "서울청(김포)",
+      "manufactureExpiryText": "2026-09-14 ~ 2027-09-14",
+      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
+      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600751906",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
     },
     {
@@ -11679,27 +11700,6 @@
       "manufactureExpiryText": "2025-07-01 ~ 2027-07-01",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600280833",
-      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
-    },
-    {
-      "id": "202600285393",
-      "sourceCountry": "KR",
-      "sourceCountryName": "韩国",
-      "noticeDate": "2026-05-04",
-      "importingCountry": "韩国",
-      "originCountry": "중국",
-      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
-      "productName": "슈시수로우싱 티앤마웨이",
-      "productNameEnglish": "SHOUSISUROUXING TIANMAWEI",
-      "productCategory": "가공식품",
-      "productType": "두류가공품",
-      "nonComplianceText": "세균수 부적합 [기준 : n=5, c=0, m=0 / 결과 : 10, 25, 5, 20, 160 (멸균제품)]",
-      "detectedValueText": null,
-      "complianceStandardText": null,
-      "handlingAgency": "경인청(인천항)",
-      "manufactureExpiryText": "2026-03-22 ~ 2027-03-21",
-      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600285393",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
     },
     {
