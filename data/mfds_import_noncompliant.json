@@ -1,9 +1,9 @@
 {
   "source": "MFDS Imported Food Non-compliance",
   "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-  "collectedAt": "2026-11-18T05:57:04Z",
-  "publishedTotalAtCollection": 553,
-  "recordsCollected": 553,
+  "collectedAt": "2026-11-19T00:44:04Z",
+  "publishedTotalAtCollection": 554,
+  "recordsCollected": 554,
   "records": [
     {
       "id": "202600776050",
@@ -24,6 +24,27 @@
       "manufactureExpiryText": "~ 2029-09-15",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600776050",
+      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
+    },
+    {
+      "id": "202600790701",
+      "sourceCountry": "KR",
+      "sourceCountryName": "韩国",
+      "noticeDate": "2026-11-18",
+      "importingCountry": "韩国",
+      "originCountry": "중국",
+      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
+      "productName": "산조인",
+      "productNameEnglish": "ZIZYPHUS JUJUBA MILLER",
+      "productCategory": "농.임산물",
+      "productType": "산조인(씨앗,건조)",
+      "nonComplianceText": "유전자검사결과 면조인(식품에 사용할 수 없는 원료) 검출",
+      "detectedValueText": null,
+      "complianceStandardText": null,
+      "handlingAgency": "부산청(신선대)",
+      "manufactureExpiryText": "",
+      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
+      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600790701",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
     },
     {
