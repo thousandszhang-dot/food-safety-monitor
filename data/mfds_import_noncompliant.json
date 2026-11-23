@@ -1,9 +1,9 @@
 {
   "source": "MFDS Imported Food Non-compliance",
   "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-  "collectedAt": "2026-11-23T08:13:09Z",
-  "publishedTotalAtCollection": 550,
-  "recordsCollected": 550,
+  "collectedAt": "2026-11-23T15:42:30Z",
+  "publishedTotalAtCollection": 551,
+  "recordsCollected": 551,
   "records": [
     {
       "id": "202600800126",
@@ -24,6 +24,27 @@
       "manufactureExpiryText": "2026-07-01 ~ 2029-07-01",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600800126",
+      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
+    },
+    {
+      "id": "202600806467",
+      "sourceCountry": "KR",
+      "sourceCountryName": "韩国",
+      "noticeDate": "2026-11-23",
+      "importingCountry": "韩国",
+      "originCountry": "이탈리아",
+      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
+      "productName": "카라멜",
+      "productNameEnglish": "CARAMEL",
+      "productCategory": "가공식품",
+      "productType": "당류가공품",
+      "nonComplianceText": "이산화황 초과검출(기준:0.030.g/kg, 결과 0.061g/kg 검출)",
+      "detectedValueText": null,
+      "complianceStandardText": null,
+      "handlingAgency": "서울청",
+      "manufactureExpiryText": "2026-05-28 ~ 2029-05-27",
+      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
+      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600806467",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
     },
     {
