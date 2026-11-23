@@ -7,6 +7,8 @@ on:
     paths:
       - 'mfds_collector.rb'
       - 'refresh_mfds_snapshot.py'
+      - 'rasff_collector.py'
+      - 'embed_rasff_snapshot.py'
       - '.github/workflows/update-and-deploy.yml'
   schedule:
     - cron: '0 8 * * *'
@@ -62,18 +64,12 @@ jobs:
           python3 refresh_mfds_snapshot.py
 
       - name: Refresh official RASFF data and page snapshot
-        env:
-          SANTE_SUBSCRIPTION_KEY: ${{ secrets.SANTE_SUBSCRIPTION_KEY }}
         run: |
           if [ -f data/rasff_notifications.json.gz ]; then
             gunzip -kf data/rasff_notifications.json.gz
           fi
-          if [ -n "$SANTE_SUBSCRIPTION_KEY" ]; then
-            python3 rasff_collector.py
-            python3 embed_rasff_snapshot.py
-          else
-            echo "::warning::SANTE_SUBSCRIPTION_KEY is not configured; RASFF remains at its saved snapshot date. MFDS was refreshed from its public list page."
-          fi
+          python3 rasff_collector.py
+          python3 embed_rasff_snapshot.py
           mkdir -p public
           cp index.html public/index.html
           gzip -fn data/rasff_notifications.json
