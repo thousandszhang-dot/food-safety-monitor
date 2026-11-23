@@ -8,9 +8,9 @@
 
 ## 发布为公开网址并自动更新
 
-`public/` 目录是部署的网站根目录；源码、采集脚本与快照保存在仓库根目录。工作流支持手动运行，也会在每天 **08:00 与 13:00（Asia/Shanghai）** 采集欧委会 DG SANTE RASFF API、重建 HTML 快照并部署页面。初次启用前，在仓库 **Settings → Secrets and variables → Actions** 添加 `SANTE_SUBSCRIPTION_KEY` 密钥；密钥不会写入仓库。
+`public/` 目录是部署的网站根目录；源码、采集脚本与快照保存在仓库根目录。工作流支持手动运行，也会在每天 **08:00 与 13:00（Asia/Shanghai）** 抓取韩国 MFDS 公开列表和欧委会 DG SANTE RASFF，重建 HTML 快照并部署页面。当前公开 iRASFF 接口可在不带订阅密钥的情况下读取；采集脚本会跟随 API 返回的 `nextLink` 读取完整分页。
 
-工作流按 `Asia/Shanghai` 时区在 08:00 和 13:00 触发。RASFF 接口暂时不可用时，该次工作流失败，已有线上页面不会被空数据覆盖；下一个时段会再尝试。
+工作流按 `Asia/Shanghai` 时区在 08:00 和 13:00 触发。页面分别显示 MFDS 与 RASFF 的采集时间。若 RASFF 接口读取失败，该次工作流会失败，已有线上页面不会被空数据覆盖；下一个时段会再尝试。
 
 工作流把更新后的压缩 RASFF JSON 与压缩 HTML 源文件提交回 `main` 分支；运行时自动解压、增量更新，再将网页发布到 `public/`。仓库需允许 GitHub Actions 使用 `GITHUB_TOKEN` 写入内容，并且 Pages 需选用 GitHub Actions 部署。
 
@@ -18,6 +18,6 @@
 
 ## 数据范围和字段限制
 
-页面包含韩国 MFDS 当前采集快照及截至 2026-10-20 的 RASFF 历史快照。RASFF 公共接口未提供公司名称、结构化检出值或逐条适用限量，页面相应字段标记为未提供。常见 RASFF 品名提供中文参考译名；未命中的品名保留源文并标注未译。
+页面包含韩国 MFDS 与 RASFF 的最近采集快照。RASFF 公共接口未提供公司名称、结构化检出值或逐条适用限量，页面相应字段标记为未提供。常见 RASFF 品名提供中文参考译名；未命中的品名保留源文并标注未译。
 
 官方 RASFF 来源：<https://webgate.ec.europa.eu/rasff-window/screen/search>

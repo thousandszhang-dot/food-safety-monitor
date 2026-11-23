@@ -5,18 +5,18 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import json
-import os
-import shutil
-import subprocess
 import time
 from datetime import date, datetime, time as datetime_time, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urlencode
+from typing import Optional
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode, urlparse
+from urllib.request import Request, urlopen
 
 API_URL = "https://api.datalake.sante.service.ec.europa.eu/rasff/irasff-general-info-view"
 SOURCE_URL = "https://webgate.ec.europa.eu/rasff-window/screen/search"
 DEFAULT_OUTPUT = Path(__file__).resolve().parent / "data" / "rasff_notifications.json"
-API_VERSION = "v1.1"
+API_VERSION = "v1.2"
 
 
 def period_windows(start: date, end: date, days: int = 14):
@@ -38,40 +38,39 @@ def get_records(start: datetime, end: datetime, retries: int = 4) -> list[dict]:
     }
     # DG SANTE's API expects literal RFC3339 colons in date filters.
     url = f"{API_URL}?{urlencode(params, safe=':')}"
-    subscription_key = os.environ.get("SANTE_SUBSCRIPTION_KEY", "").strip()
-    curl = shutil.which("curl")
-    if not curl:
-        raise RuntimeError("需要系统 curl 命令来读取 DG SANTE API")
-    last_error = None
-    for attempt in range(retries):
-        result = subprocess.run(
-            [curl, "--fail", "--silent", "--show-error", "--location",
-             "--retry", "3", "--retry-all-errors", "--retry-delay", "1",
-             "--max-time", "120", *( ["--header", f"Ocp-Apim-Subscription-Key: {subscription_key}"] if subscription_key else [] ), url],
-            capture_output=True,
-        )
-        if result.returncode == 0:
+    headers = {"Content-Type": "application/json"}
+    records: list[dict] = []
+    next_url: Optional[str] = url
+    visited: set[str] = set()
+
+    while next_url:
+        parsed = urlparse(next_url)
+        if parsed.scheme != "https" or parsed.netloc != urlparse(API_URL).netloc:
+            raise RuntimeError(f"API 返回了非预期分页地址：{next_url}")
+        if next_url in visited:
+            raise RuntimeError("API 分页地址重复，停止以避免循环")
+        visited.add(next_url)
+
+        last_error: Optional[Exception] = None
+        for attempt in range(retries):
             try:
-                payload = json.loads(result.stdout)
-                records = payload.get("value") if isinstance(payload, dict) else None
-                if not isinstance(records, list):
+                request = Request(next_url, headers=headers)
+                with urlopen(request, timeout=120) as response:
+                    payload = json.load(response)
+                if not isinstance(payload, dict) or not isinstance(payload.get("value"), list):
                     raise ValueError("API 响应未包含 value 数组")
-                # Observed response cap is 100. Split capped windows so results are not silently lost.
-                if len(records) >= 100:
-                    if (end - start).total_seconds() <= 60:
-                        raise RuntimeError("一分钟窗口仍返回 100 条，需先确认 API 分页规则")
-                    midpoint = (start + (end - start) / 2).replace(microsecond=0)
-                    right_start = midpoint + timedelta(seconds=1)
-                    print(f"  API reached 100-row cap; splitting at {midpoint.isoformat()}", flush=True)
-                    return get_records(start, midpoint, retries) + get_records(right_start, end, retries)
-                return records
-            except (json.JSONDecodeError, ValueError) as exc:
+                records.extend(payload["value"])
+                link = payload.get("nextLink")
+                next_url = link.strip() if isinstance(link, str) and link.strip() else None
+                break
+            except (HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError, ValueError) as exc:
                 last_error = exc
+                if attempt + 1 < retries:
+                    time.sleep(2 ** attempt)
         else:
-            last_error = result.stderr.decode("utf-8", "replace")[:500]
-        if attempt + 1 < retries:
-            time.sleep(2 ** attempt)
-    raise RuntimeError(f"查询 {start} 至 {end} 失败：{last_error}")
+            raise RuntimeError(f"查询 {start} 至 {end} 失败：{last_error}") from last_error
+
+    return records
 
 
 def save_snapshot(output: Path, by_id: dict[str, dict]) -> None:
