@@ -1,7 +1,7 @@
 {
   "source": "MFDS Imported Food Non-compliance",
   "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-  "collectedAt": "2026-11-25T05:53:07Z",
+  "collectedAt": "2026-11-25T15:19:48Z",
   "publishedTotalAtCollection": 563,
   "recordsCollected": 563,
   "records": [
@@ -24,6 +24,27 @@
       "manufactureExpiryText": "",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600814657",
+      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
+    },
+    {
+      "id": "202600825712",
+      "sourceCountry": "KR",
+      "sourceCountryName": "韩国",
+      "noticeDate": "2026-11-25",
+      "importingCountry": "韩国",
+      "originCountry": "파키스탄",
+      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
+      "productName": "칵테일 사모사",
+      "productNameEnglish": "COCKTAIL SAMOSA",
+      "productCategory": "가공식품",
+      "productType": "만두",
+      "nonComplianceText": "1. 세균수(CFU/g) 규격 부적합[규격: n=5, c=2, m=100,000, M=500,000(발효제품, 발효제품 첨가 또는 유산균 첨가제품은 제외, 결과: ① 5,200,000, ② 4,200,000, ③ 4,600,000, ④ 4,900,000, ⑤ 5,100,000],  2. 대장균(CFU/g) 규격 부적합[규격: n=5, c=2, m=0, M=10(살균제품 제외), 결과: ① 290, ② 150, ③ 180, ④ 210, ⑤ 210]",
+      "detectedValueText": "① 5,200,000, ② 4,200,000, ③ 4,600,000, ④ 4,900,000, ⑤ 5,100,000],  2. 대장균(CFU/g",
+      "complianceStandardText": "n=5, c=2, m=100,000, M=500,000(발효제품, 발효제품 첨가 또는 유산균 첨가제품은 제외",
+      "handlingAgency": "부산청",
+      "manufactureExpiryText": "2026-10-01 ~ 2028-10-15",
+      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
+      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600825712",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
     },
     {
@@ -11700,27 +11721,6 @@
       "manufactureExpiryText": "",
       "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
       "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600323168",
-      "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
-    },
-    {
-      "id": "202600339543",
-      "sourceCountry": "KR",
-      "sourceCountryName": "韩国",
-      "noticeDate": "2026-05-26",
-      "importingCountry": "韩国",
-      "originCountry": "튀르키예",
-      "originCountrySourceLabel": "制造国家（MFDS 原字段）",
-      "productName": "글라스웨어",
-      "productNameEnglish": "GLASS PLATE",
-      "productCategory": "기구또는용기.포장",
-      "productType": "무착색유리제(가열조리용)",
-      "nonComplianceText": "열 충격 강도(전자레인지용) 부적합",
-      "detectedValueText": null,
-      "complianceStandardText": null,
-      "handlingAgency": "경인청(공항)",
-      "manufactureExpiryText": "",
-      "sourceUrl": "https://impfood.mfds.go.kr/CFCEE01F01",
-      "recordUrl": "https://impfood.mfds.go.kr/CFCEE01F01#notice-202600339543",
       "fieldExtraction": "detectedValueText/complianceStandardText are best-effort parses; nonComplianceText is authoritative source text"
     },
     {
